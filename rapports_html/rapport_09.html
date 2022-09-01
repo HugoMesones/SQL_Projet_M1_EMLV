@@ -1,0 +1,436 @@
+<!DOCTYPE html> 
+<html lang="fr"> 
+<head>
+<title>Rapport 9 : Vitesse moyenne d'un train</title>
+<link rel="stylesheet" href="css/reset.css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+ 
+<link rel="stylesheet" href="style.css">
+<meta http-equiv="Content-Type" content="text/html; charset=CP850">
+<meta name="generator" content="SQL*Plus 19.3.0">
+<style type='text/css'> body {font:10pt Arial,Helvetica,sans-serif; color:black; background:#203F7D} p {font:10pt Helvetica,sans-serif; color:black; font-weight: bold;} table {font:10pt Arial,Helvetica,sans-serif; color:Black; background:#f7f7e7; padding:0px 0px 0px 0px; margin:0px 0px 10px 0px;} tr,td {font:10pt Arial,Helvetica,sans-serif; color:Black; background:#f7f7e7; padding:5px 5px 5px 5px; margin:0px 0px 0px 0px;} th {font:bold 10pt Arial,Helvetica,sans-serif; color:#336699; background:#cccc99; padding:10px 10px 10px 10px;} h1 {font:16pt Helvetica; color:#336699; font-weight: bold; background-color:#FFF5EE; margin-top:0pt; margin-bottom:0pt; padding:0px 0px 0px 0px;-
+} h2 {font:bold 10pt Arial,Helvetica,Geneva,sans-serif; color:#336699; background-color:White; margin-top:4pt; margin-bottom:0pt;}</style>
+</head>
+<body>
+<div class="logo">
+	<img src="style/olvoyages.gif">
+</div>
+<div class="menu">
+	<a href="rapport_01.html">Rapport 1</a>
+	<span class="separateur">|</span>
+	<a href="rapport_02.html">Rapport 2</a>
+	<span class="separateur">|</span>
+	<a href="rapport_03.html">Rapport 3</a>
+	<span class="separateur">|</span>
+	<a href="rapport_04.html">Rapport 4</a>
+	<span class="separateur">|</span>
+	<a href="rapport_05.html">Rapport 5</a>
+	<span class="separateur">|</span>
+	<a href="rapport_06.html">Rapport 6</a>
+	<span class="separateur">|</span>
+	<a href="rapport_07.html">Rapport 7</a>
+	<span class="separateur">|</span>
+	<a href="rapport_08.html">Rapport 8</a>
+	<span class="separateur">|</span>
+	<span class="pageactuelle">Rapport 9</span>
+	<span class="separateur">|</span>
+	<a href="rapport_10.html">Rapport 10</a>
+	<span class="separateur">|</span>
+	<a href="rapport_11.html">Rapport 11</a>
+	<span class="separateur">|</span>
+	<a href="rapport_12.html">Rapport 12</a>
+	<span class="separateur">|</span>
+	<a href="rapport_13.html">Rapport 13</a>
+	<span class="separateur">|</span>
+	<a href="rapport_14.html">Rapport 14</a>
+	<span class="separateur">|</span>
+	<a href="rapport_15.html">Rapport 15</a>
+	<span class="separateur">|</span>
+	<a href="rapport_16.html">Rapport 16</a>
+	<br>
+	<a href="resa_13.html">Réservation 13</a>
+	<span class="separateur">|</span>
+	<a href="resa_18.html">Réservation 18</a>
+	<span class="separateur">|</span>
+	<a href="resa_23.html">Réservation 23</a>
+	<span class="separateur">|</span>
+	<a href="resa_31.html">Réservation 31</a>
+</div>
+<div class="conteneur">
+<h1>Requ&ecirc;te n&deg;9</h1>
+<br>
+<p>Vitesse moyenne d'un train</p>
+	<div class="codesql">
+		SQL> <span class="coderouge"><span class="codebleu">SELECT</span> train_id <span class="codebleu">||</span> <span class="codeorange">' '</span> <span class="codebleu">||</span> s1.city <span class="codebleu">||</span> <span class="codeorange">'</span> <span class="codebleu">-</span> <span class="codeorange">'</span> <span class="codebleu">||</span> s2.city "Num&eacute;ro de train et Trajet",
+		<br>
+		  2  <span class="codeorange">ROUND</span>(distance<span class="codebleu">/</span>((arrival_time <span class="codebleu">-</span> departure_time)<span class="codebleu">*</span>24),0) <span class="codebleu">||</span> <span class="codeorange">'</span> km<span class="codebleu">/</span>h<span class="codeorange">'</span> <span class="codebleu">AS</span> "Vitesse Moyenne du train"
+		<br>
+		  3  <span class="codebleu">FROM</span> t_train t
+		<br>
+		  4  <span class="codebleu">JOIN</span> t_station s1
+		<br>
+		  5  <span class="codebleu">ON</span> t.departure_station_id <span class="codebleu">=</span> s1.station_id
+		<br>
+		  6  <span class="codebleu">JOIN</span> t_station s2
+		<br>
+		  7  <span class="codebleu">ON</span> t.arrival_station_id <span class="codebleu">=</span> s2.station_id
+		<br>
+		  8 <span class="codebleu">ORDER BY</span> train_id;</span>
+	</div>
+	<div class="tableau">
+		<br>
+		<table border='1' width='90%' align='center' summary='Script output'>
+		<tr>
+		<th scope="col">
+		Numéro de train et Trajet
+		</th>
+		<th scope="col">
+		Vitesse Moyenne du train
+		</th>
+		</tr>
+		<tr>
+			<td>
+			1 Paris - Bordeaux
+			</td>
+			<td>
+			161 km/h
+			</td>
+			</tr>
+			<tr>
+			<td>
+			2 Bordeaux - Paris
+			</td>
+			<td>
+			161 km/h
+			</td>
+			</tr>
+			<tr>
+			<td>
+			3 Paris - Marseille
+			</td>
+			<td>
+			190 km/h
+			</td>
+			</tr>
+			<tr>
+			<td>
+			4 Marseille - Paris
+			</td>
+			<td>
+			190 km/h
+			</td>
+			</tr>
+			<tr>
+			<td>
+			5 Marseille - Nantes
+			</td>
+			<td>
+			177 km/h
+			</td>
+			</tr>
+			<tr>
+			<td>
+			6 Nantes - Marseille
+			</td>
+			<td>
+			177 km/h
+			</td>
+			</tr>
+			<tr>
+			<td>
+			7 Lyon - Toulouse
+			</td>
+			<td>
+			190 km/h
+			</td>
+			</tr>
+			<tr>
+			<td>
+			8 Toulouse - Lyon
+			</td>
+			<td>
+			190 km/h
+			</td>
+			</tr>
+			<tr>
+			<td>
+			9 Nantes - Lyon
+			</td>
+			<td>
+			168 km/h
+			</td>
+			</tr>
+			<tr>
+			<td>
+			10 Lyon - Nantes
+			</td>
+			<td>
+			126 km/h
+			</td>
+			</tr>
+			<tr>
+			<td>
+			11 Nice - Paris
+			</td>
+			<td>
+			188 km/h
+			</td>
+			</tr>
+			<tr>
+			<td>
+			12 Paris - Nice
+			</td>
+			<td>
+			188 km/h
+			</td>
+			</tr>
+			<tr>
+			<td>
+			13 Marseille - Nimes
+			</td>
+			<td>
+			154 km/h
+			</td>
+			</tr>
+			<tr>
+			<td>
+			14 Nimes - Marseille
+			</td>
+			<td>
+			154 km/h
+			</td>
+			</tr>
+			<tr>
+			<td>
+			15 Strasbourg - Brest
+			</td>
+			<td>
+			191 km/h
+			</td>
+			</tr>
+			<tr>
+			<td>
+			16 Brest - Strasbourg
+			</td>
+			<td>
+			215 km/h
+			</td>
+			</tr>
+			<tr>
+			<td>
+			17 Brest - Bordeaux
+			</td>
+			<td>
+			204 km/h
+			</td>
+			</tr>
+			<tr>
+			<td>
+			18 Bordeaux - Brest
+			</td>
+			<td>
+			204 km/h
+			</td>
+			</tr>
+			<tr>
+			<td>
+			19 Macon - Bordeaux
+			</td>
+			<td>
+			196 km/h
+			</td>
+			</tr>
+			<tr>
+			<td>
+			20 Bordeaux - Macon
+			</td>
+			<td>
+			196 km/h
+			</td>
+			</tr>
+			<tr>
+			<td>
+			21 Toulouse - Clermont-Ferrand
+			</td>
+			<td>
+			183 km/h
+			</td>
+			</tr>
+			<tr>
+			<td>
+			22 Clermont-Ferrand - Toulouse
+			</td>
+			<td>
+			183 km/h
+			</td>
+			</tr>
+			<tr>
+			<td>
+			23 Saint-Malo - Nimes
+			</td>
+			<td>
+			200 km/h
+			</td>
+			</tr>
+			<tr>
+			<td>
+			24 Nimes - Saint-Malo
+			</td>
+			<td>
+			200 km/h
+			</td>
+			</tr>
+			<tr>
+			<td>
+			25 Saint-Malo - Paris
+			</td>
+			<td>
+			175 km/h
+			</td>
+			</tr>
+			<tr>
+			<td>
+			26 Paris - Saint-Malo
+			</td>
+			<td>
+			175 km/h
+			</td>
+			</tr>
+			<tr>
+			<td>
+			27 Montpellier - Nice
+			</td>
+			<td>
+			171 km/h
+			</td>
+			</tr>
+			<tr>
+			<td>
+			28 Nice - Montpellier
+			</td>
+			<td>
+			171 km/h
+			</td>
+			</tr>
+			<tr>
+			<td>
+			29 Mulhouse - Brest
+			</td>
+			<td>
+			200 km/h
+			</td>
+			</tr>
+			<tr>
+			<td>
+			30 Brest - Mulhouse
+			</td>
+			<td>
+			200 km/h
+			</td>
+			</tr>
+			<tr>
+			<td>
+			31 Troyes - Lyon
+			</td>
+			<td>
+			158 km/h
+			</td>
+			</tr>
+			<tr>
+			<td>
+			32 Lyon - Troyes
+			</td>
+			<td>
+			158 km/h
+			</td>
+			</tr>
+			<tr>
+			<td>
+			33 Valenciennes - Strasbourg
+			</td>
+			<td>
+			182 km/h
+			</td>
+			</tr>
+			<tr>
+			<td>
+			34 Strasbourg - Valenciennes
+			</td>
+			<td>
+			182 km/h
+			</td>
+			</tr>
+			<tr>
+			<td>
+			35 Calais - Paris
+			</td>
+			<td>
+			166 km/h
+			</td>
+			</tr>
+			<tr>
+			<td>
+			36 Paris - Calais
+			</td>
+			<td>
+			166 km/h
+			</td>
+			</tr>
+			<tr>
+			<td>
+			37 Dijon - Valenciennes
+			</td>
+			<td>
+			182 km/h
+			</td>
+			</tr>
+			<tr>
+			<td>
+			38 Valenciennes - Dijon
+			</td>
+			<td>
+			182 km/h
+			</td>
+			</tr>
+			<tr>
+			<td>
+			39 Grenoble - Macon
+			</td>
+			<td>
+			180 km/h
+			</td>
+			</tr>
+			<tr>
+			<td>
+			40 Macon - Grenoble
+			</td>
+			<td>
+			180 km/h
+			</td>
+			</tr>
+			<tr>
+			<td>
+			41 Le Havre - Paris
+			</td>
+			<td>
+			198 km/h
+			</td>
+			</tr>
+			<tr>
+			<td>
+			42 Paris - Le Havre
+			</td>
+			<td>
+			198 km/h
+			</td>
+			</tr>
+			</table>
+
+		<span class="lignes">42 lignes sélectionnées.<br>
+	</div>
+</div>
+<div class="basdepage">
+Cr&eacute;&eacute; à la sueur de notre front par Hugo Mesones, Sutharsan Murugesu, et Matthieu Mollar.
+</div>
+</body>
+</html>

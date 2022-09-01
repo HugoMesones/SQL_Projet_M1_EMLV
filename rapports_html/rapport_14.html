@@ -1,0 +1,202 @@
+<!DOCTYPE html> 
+<html lang="fr"> 
+<head>
+<title>Rapport 14 : Places disponibles</title>
+<link rel="stylesheet" href="css/reset.css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+<meta http-equiv="Content-Type" content="text/html"; charset="utf-8"> 
+<link rel="stylesheet" href="style.css">
+<meta name="generator" content="SQL*Plus 19.3.0">
+<style type='text/css'> body {font:10pt Arial,Helvetica,sans-serif; color:black; background:#203F7D} p {font:10pt Helvetica,sans-serif; color:black; font-weight: bold;} table {font:10pt Arial,Helvetica,sans-serif; color:Black; background:#f7f7e7; padding:0px 0px 0px 0px; margin:0px 0px 10px 0px;} tr,td {font:10pt Arial,Helvetica,sans-serif; color:Black; background:#f7f7e7; padding:5px 5px 5px 5px; margin:0px 0px 0px 0px;} th {font:bold 10pt Arial,Helvetica,sans-serif; color:#336699; background:#cccc99; padding:10px 10px 10px 10px;} h1 {font:16pt Helvetica; color:#336699; font-weight: bold; background-color:#FFF5EE; margin-top:0pt; margin-bottom:0pt; padding:0px 0px 0px 0px;-
+} h2 {font:bold 10pt Arial,Helvetica,Geneva,sans-serif; color:#336699; background-color:White; margin-top:4pt; margin-bottom:0pt;}</style>
+</head>
+<body>
+<div class="logo">
+  <img src="style/olvoyages.gif">
+</div>
+<div class="menu">
+  <a href="rapport_01.html">Rapport 1</a>
+  <span class="separateur">|</span>
+  <a href="rapport_02.html">Rapport 2</a>
+  <span class="separateur">|</span>
+  <a href="rapport_03.html">Rapport 3</a>
+  <span class="separateur">|</span>
+  <a href="rapport_04.html">Rapport 4</a>
+  <span class="separateur">|</span>
+  <a href="rapport_05.html">Rapport 5</a>
+  <span class="separateur">|</span>
+  <a href="rapport_06.html">Rapport 6</a>
+  <span class="separateur">|</span>
+  <a href="rapport_07.html">Rapport 7</a>
+  <span class="separateur">|</span>
+  <a href="rapport_08.html">Rapport 8</a>
+  <span class="separateur">|</span>
+  <a href="rapport_09.html">Rapport 9</a>
+  <span class="separateur">|</span>
+  <a href="rapport_10.html">Rapport 10</a>
+  <span class="separateur">|</span>
+  <a href="rapport_11.html">Rapport 11</a>
+  <span class="separateur">|</span>
+  <a href="rapport_12.html">Rapport 12</a>
+  <span class="separateur">|</span>
+  <a href="rapport_13.html">Rapport 13</a>
+  <span class="separateur">|</span>
+  <span class="pageactuelle">Rapport 14</span>
+  <span class="separateur">|</span>
+  <a href="rapport_15.html">Rapport 15</a>
+  <span class="separateur">|</span>
+  <a href="rapport_16.html">Rapport 16</a>
+  <br>
+  <a href="resa_13.html">Réservation 13</a>
+  <span class="separateur">|</span>
+  <a href="resa_18.html">Réservation 18</a>
+  <span class="separateur">|</span>
+  <a href="resa_23.html">Réservation 23</a>
+  <span class="separateur">|</span>
+  <a href="resa_31.html">Réservation 31</a>
+</div>
+<div class="conteneur">
+<h1>Requête n°14</h1>
+<br>
+<p>Places disponibles</p>
+    <div class="codesql">
+        SQL> <span class="coderouge"><span class="codebleu">SELECT</span> t.train_id <span class="codebleu">||</span> <span class="codeorange">' '</span> <span class="codebleu">||</span> s1.city <span class="codebleu">||</span> <span class="codeorange">'</span> <span class="codebleu">-</span> <span class="codeorange">'</span> <span class="codebleu">||</span> s2.city "Numéro et nom du train", sumst.st <span class="codebleu">-</span> cntr.cr "Nombre de places disponibles", <span class="codeorange">TO_CHAR</span>(departure_time, <span class="codeorange">'</span>DD<span class="codebleu">/</span>MM<span class="codebleu">/</span>YYYY<span class="codeorange">'</span>) "Date de départ", distance "Distance"
+        <br>
+          2  <span class="codebleu">FROM</span> t_train t
+        <br>
+          3  <span class="codebleu">JOIN</span> (<span class="codebleu">SELECT</span> train_id, <span class="codeorange">SUM</span>(nb_seat) st
+        <br>
+          4  <span class="codebleu">FROM</span> t_wagon_train wt
+        <br>
+          5  <span class="codebleu">JOIN</span> t_wagon w
+        <br>
+          6  <span class="codebleu">ON</span> wt.wagon_id <span class="codebleu">=</span> w.wagon_id
+        <br>
+          7  <span class="codebleu">GROUP BY</span> train_id
+        <br>
+          8  <span class="codebleu">ORDER BY</span> train_id) sumst
+        <br>
+          9  <span class="codebleu">ON</span> t.train_id <span class="codebleu">=</span> sumst.train_id
+        <br>
+         10  <span class="codebleu">JOIN</span> (<span class="codebleu">SELECT</span> train_id, <span class="codeorange">COUNT</span>(reservation_id) cr
+        <br>
+         11  <span class="codebleu">FROM</span> t_wagon_train wt2
+        <br>
+         12  <span class="codebleu">JOIN</span> t_ticket ti
+        <br>
+         13  <span class="codebleu">ON</span> wt2.wag_tr_id <span class="codebleu">=</span> ti.wag_tr_id
+        <br>
+         14  <span class="codebleu">GROUP BY</span> train_id
+        <br>
+         15  <span class="codebleu">ORDER BY</span> train_id) cntr
+        <br>
+         16  <span class="codebleu">ON</span> t.train_id <span class="codebleu">=</span> cntr.train_id
+        <br>
+         17  <span class="codebleu">JOIN</span> t_station s1
+        <br>
+         18  <span class="codebleu">ON</span> t.departure_station_id <span class="codebleu">=</span> s1.station_id
+        <br>
+         19  <span class="codebleu">JOIN</span> t_station s2
+        <br>
+         20  <span class="codebleu">ON</span> t.arrival_station_id <span class="codebleu">=</span> s2.station_id
+        <br>
+         21  <span class="codebleu">WHERE</span> distance <span class="codebleu">></span> 300
+        <br>
+         22  <span class="codebleu">AND</span> <span class="codeorange">TO_CHAR</span>(departure_time, <span class="codeorange">'</span>DD<span class="codebleu">/</span>MM<span class="codebleu">/</span>YYYY<span class="codeorange">'</span>) <span class="codebleu">=</span> <span class="codeorange">'</span>22<span class="codebleu">/</span>10<span class="codebleu">/</span>2020<span class="codeorange">'</span>;</span>
+    </div>
+    <div class="tableau">
+        <br>
+        <table border='1' width='90%' align='center' summary='Script output'>
+        <tr>
+        <th scope="col">
+        Numéro et nom du train
+        </th>
+        <th scope="col">
+        Nombre de places disponibles
+        </th>
+        <th scope="col">
+        Date de départ
+        </th>
+        <th scope="col">
+        Distance
+        </th>
+        </tr>
+        <tr>
+        <td>
+        3 Paris - Marseille
+        </td>
+        <td align="right">
+               122
+        </td>
+        <td>
+        22/10/2020
+        </td>
+        <td align="right">
+               616
+        </td>
+        </tr>
+        <tr>
+        <td>
+        4 Marseille - Paris
+        </td>
+        <td align="right">
+                66
+        </td>
+        <td>
+        22/10/2020
+        </td>
+        <td align="right">
+               616
+        </td>
+        </tr>
+        <tr>
+        <td>
+        7 Lyon - Toulouse
+        </td>
+        <td align="right">
+                29
+        </td>
+        <td>
+        22/10/2020
+        </td>
+        <td align="right">
+               380
+        </td>
+        </tr>
+        <tr>
+        <td>
+        8 Toulouse - Lyon
+        </td>
+        <td align="right">
+               119
+        </td>
+        <td>
+        22/10/2020
+        </td>
+        <td align="right">
+               380
+        </td>
+        </tr>
+        <tr>
+        <td>
+        31 Troyes - Lyon
+        </td>
+        <td align="right">
+                59
+        </td>
+        <td>
+        22/10/2020
+        </td>
+        <td align="right">
+               316
+        </td>
+        </tr>
+        </table>
+        <span class="lignes">5 lignes sélectionnées.</span><br>
+    </div>
+</div>
+<div class="basdepage">
+Créé à la sueur de notre front par Hugo Mesones, Sutharsan Murugesu, et Matthieu Mollar.
+</div>
+</body>
+</html>

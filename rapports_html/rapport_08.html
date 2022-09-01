@@ -1,0 +1,459 @@
+<!DOCTYPE html> 
+<html lang="fr"> 
+<head>
+<title>Rapport 8 : Clients sans abonnement</title>
+<link rel="stylesheet" href="css/reset.css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+<meta charset="utf-8"> 
+<link rel="stylesheet" href="style.css">
+<meta http-equiv="Content-Type" content="text/html; charset=CP850">
+<meta name="generator" content="SQL*Plus 19.3.0">
+<style type='text/css'> body {font:10pt Arial,Helvetica,sans-serif; color:black; background:#203F7D} p {font:10pt Helvetica,sans-serif; color:black; font-weight: bold;} table {font:10pt Arial,Helvetica,sans-serif; color:Black; background:#f7f7e7; padding:0px 0px 0px 0px; margin:0px 0px 10px 0px;} tr,td {font:10pt Arial,Helvetica,sans-serif; color:Black; background:#f7f7e7; padding:5px 5px 5px 5px; margin:0px 0px 0px 0px;} th {font:bold 10pt Arial,Helvetica,sans-serif; color:#336699; background:#cccc99; padding:10px 10px 10px 10px;} h1 {font:16pt Helvetica; color:#336699; font-weight: bold; background-color:#FFF5EE; margin-top:0pt; margin-bottom:0pt; padding:0px 0px 0px 0px;-
+} h2 {font:bold 10pt Arial,Helvetica,Geneva,sans-serif; color:#336699; background-color:White; margin-top:4pt; margin-bottom:0pt;}</style>
+</head>
+<body>
+<div class="logo">
+  <img src="style/olvoyages.gif">
+</div>
+<div class="menu">
+  <a href="rapport_01.html">Rapport 1</a>
+  <span class="separateur">|</span>
+  <a href="rapport_02.html">Rapport 2</a>
+  <span class="separateur">|</span>
+  <a href="rapport_03.html">Rapport 3</a>
+  <span class="separateur">|</span>
+  <a href="rapport_04.html">Rapport 4</a>
+  <span class="separateur">|</span>
+  <a href="rapport_05.html">Rapport 5</a>
+  <span class="separateur">|</span>
+  <a href="rapport_06.html">Rapport 6</a>
+  <span class="separateur">|</span>
+  <a href="rapport_07.html">Rapport 7</a>
+  <span class="separateur">|</span>
+  <span class="pageactuelle">Rapport 8</span>
+  <span class="separateur">|</span>
+  <a href="rapport_09.html">Rapport 9</a>
+  <span class="separateur">|</span>
+  <a href="rapport_10.html">Rapport 10</a>
+  <span class="separateur">|</span>
+  <a href="rapport_11.html">Rapport 11</a>
+  <span class="separateur">|</span>
+  <a href="rapport_12.html">Rapport 12</a>
+  <span class="separateur">|</span>
+  <a href="rapport_13.html">Rapport 13</a>
+  <span class="separateur">|</span>
+  <a href="rapport_14.html">Rapport 14</a>
+  <span class="separateur">|</span>
+  <a href="rapport_15.html">Rapport 15</a>
+  <span class="separateur">|</span>
+  <a href="rapport_16.html">Rapport 16</a>
+  <br>
+  <a href="resa_13.html">R&eacute;servation 13</a>
+  <span class="separateur">|</span>
+  <a href="resa_18.html">R&eacute;servation 18</a>
+  <span class="separateur">|</span>
+  <a href="resa_23.html">R&eacute;servation 23</a>
+  <span class="separateur">|</span>
+  <a href="resa_31.html">R&eacute;servation 31</a>
+</div>
+<div class="conteneur">
+	<h1>Requ&ecirc;te n&deg;8</h1>
+	<br>
+	<p>Clients sans abonnement</p>
+	<div class="codesql">
+		SQL&gt; <span class="coderouge"><span class="codebleu">SELECT</span> <span class="codeorange">UPPER</span>(last_name) <span class="codebleu">||</span> <span class="codeorange">' '</span> <span class="codebleu">||</span> first_name &quot;Clients sans abonnement&quot;, address &quot;Adresse&quot;
+		<br>
+		  2  <span class="codebleu">FROM</span> t_customer c
+		<br>
+		  3  <span class="codebleu">WHERE</span> c.pass_id <span class="codebleu">IS NULL</span>
+		<br>
+		  4  <span class="codebleu">ORDER BY</span> last_name, first_name;</span>
+	</div>
+	<div class="tableau">
+		<br>
+		<table border='1' width='90%' align='center' summary='Script output'>
+		<tr>
+		<th scope="col">
+		Clients sans abonnement
+		</th>
+		<th scope="col">
+		Adresse
+		</th>
+		</tr>
+		<tr>
+		<td>
+		BARNES Bill
+		</td>
+		<td>
+		59 Faubourg Saint Honor&eacute; - F-75016 Paris
+		</td>
+		</tr>
+		<tr>
+		<td>
+		BARNES Katherine
+		</td>
+		<td>
+		36 Faubourg Saint Honor&eacute; - F-75016 Paris
+		</td>
+		</tr>
+		<tr>
+		<td>
+		BAUER John
+		</td>
+		<td>
+		29 Faubourg Saint Honor&eacute; - F-75016 Paris
+		</td>
+		</tr>
+		<tr>
+		<td>
+		BURTON Albert
+		</td>
+		<td>
+		65 Faubourg Saint Honor&eacute; - F-75016 Paris
+		</td>
+		</tr>
+		<tr>
+		<td>
+		CUNNINGHAM Charles
+		</td>
+		<td>
+		33 Faubourg Saint Honor&eacute; - F-75016 Paris
+		</td>
+		</tr>
+		<tr>
+		<td>
+		DALTON Vance
+		</td>
+		<td>
+		27 Faubourg Saint Honor&eacute; - F-75016 Paris
+		</td>
+		</tr>
+		<tr>
+		<td>
+		DAWN Lane
+		</td>
+		<td>
+		13 Faubourg Saint Honor&eacute; - F-75016 Paris
+		</td>
+		</tr>
+		<tr>
+		<td>
+		ERICKSON Leonard
+		</td>
+		<td>
+		74 Faubourg Saint Honor&eacute; - F-75016 Paris
+		</td>
+		</tr>
+		<tr>
+		<td>
+		FERGUSON Angie
+		</td>
+		<td>
+		31 Faubourg Saint Honor&eacute; - F-75016 Paris
+		</td>
+		</tr>
+		<tr>
+		<td>
+		FIELDS Romain
+		</td>
+		<td>
+		75 Faubourg Saint Honor&eacute; - F-75016 Paris
+		</td>
+		</tr>
+		<tr>
+		<td>
+		FLEMING Steve
+		</td>
+		<td>
+		59 Faubourg Saint Honor&eacute; - F-75016 Paris
+		</td>
+		</tr>
+		<tr>
+		<td>
+		FRASER Faun
+		</td>
+		<td>
+		48 Faubourg Saint Honor&eacute; - F-75016 Paris
+		</td>
+		</tr>
+		<tr>
+		<td>
+		FRASER Thomas
+		</td>
+		<td>
+		34 Faubourg Saint Honor&eacute; - F-75016 Paris
+		</td>
+		</tr>
+		<tr>
+		<td>
+		GORDON Rosemary
+		</td>
+		<td>
+		25 Faubourg Saint Honor&eacute; - F-75016 Paris
+		</td>
+		</tr>
+		<tr>
+		<td>
+		GORDON Roy
+		</td>
+		<td>
+		79 Faubourg Saint Honor&eacute; - F-75016 Paris
+		</td>
+		</tr>
+		<tr>
+		<td>
+		HAMILTON Dory
+		</td>
+		<td>
+		55 Faubourg Saint Honor&eacute; - F-75016 Paris
+		</td>
+		</tr>
+		<tr>
+		<td>
+		HARRIS Brandy
+		</td>
+		<td>
+		30 Faubourg Saint Honor&eacute; - F-75016 Paris
+		</td>
+		</tr>
+		<tr>
+		<td>
+		HARRIS Joe
+		</td>
+		<td>
+		69 Faubourg Saint Honor&eacute; - F-75016 Paris
+		</td>
+		</tr>
+		<tr>
+		<td>
+		HEALY Stacy
+		</td>
+		<td>
+		06 Faubourg Saint Honor&eacute; - F-75016 Paris
+		</td>
+		</tr>
+		<tr>
+		<td>
+		HERMAN Smith
+		</td>
+		<td>
+		23 Faubourg Saint Honor&eacute; - F-75016 Paris
+		</td>
+		</tr>
+		<tr>
+		<td>
+		HERMAN Tom
+		</td>
+		<td>
+		81 Faubourg Saint Honor&eacute; - F-75016 Paris
+		</td>
+		</tr>
+		<tr>
+		<td>
+		HESS Katherine
+		</td>
+		<td>
+		67 Faubourg Saint Honor&eacute; - F-75016 Paris
+		</td>
+		</tr>
+		<tr>
+		<td>
+		HOLMES Martin
+		</td>
+		<td>
+		43 Faubourg Saint Honor&eacute; - F-75016 Paris
+		</td>
+		</tr>
+		<tr>
+		<td>
+		LANDERS Robert
+		</td>
+		<td>
+		41 Faubourg Saint Honor&eacute; - F-75016 Paris
+		</td>
+		</tr>
+		<tr>
+		<td>
+		LARSON Arthur
+		</td>
+		<td>
+		20 Faubourg Saint Honor&eacute; - F-75016 Paris
+		</td>
+		</tr>
+		<tr>
+		<td>
+		MAUGARD Gregory
+		</td>
+		<td>
+		57 Faubourg Saint Honor&eacute; - F-75016 Paris
+		</td>
+		</tr>
+		<tr>
+		<td>
+		MCDANIELS Stacy
+		</td>
+		<td>
+		71 Faubourg Saint Honor&eacute; - F-75016 Paris
+		</td>
+		</tr>
+		<tr>
+		<td>
+		MCDANIELS Wayne
+		</td>
+		<td>
+		62 Faubourg Saint Honor&eacute; - F-75016 Paris
+		</td>
+		</tr>
+		<tr>
+		<td>
+		MILER Victor
+		</td>
+		<td>
+		22 Faubourg Saint Honor&eacute; - F-75016 Paris
+		</td>
+		</tr>
+		<tr>
+		<td>
+		MILLER Alex
+		</td>
+		<td>
+		52 Faubourg Saint Honor&eacute; - F-75016 Paris
+		</td>
+		</tr>
+		<tr>
+		<td>
+		MORRIS Tim
+		</td>
+		<td>
+		63 Faubourg Saint Honor&eacute; - F-75016 Paris
+		</td>
+		</tr>
+		<tr>
+		<td>
+		NOVAK Craig
+		</td>
+		<td>
+		07 Faubourg Saint Honor&eacute; - F-75016 Paris
+		</td>
+		</tr>
+		<tr>
+		<td>
+		NOVAK Jessie
+		</td>
+		<td>
+		60 Faubourg Saint Honor&eacute; - F-75016 Paris
+		</td>
+		</tr>
+		<tr>
+		<td>
+		OSWALD Georges
+		</td>
+		<td>
+		09 Faubourg Saint Honor&eacute; - F-75016 Paris
+		</td>
+		</tr>
+		<tr>
+		<td>
+		OSWALD Ty
+		</td>
+		<td>
+		78 Faubourg Saint Honor&eacute; - F-75016 Paris
+		</td>
+		</tr>
+		<tr>
+		<td>
+		PATTERSON Philip
+		</td>
+		<td>
+		17 Faubourg Saint Honor&eacute; - F-75016 Paris
+		</td>
+		</tr>
+		<tr>
+		<td>
+		PETERSEN David
+		</td>
+		<td>
+		72 Faubourg Saint Honor&eacute; - F-75016 Paris
+		</td>
+		</tr>
+		<tr>
+		<td>
+		REYNOLDS Philip
+		</td>
+		<td>
+		05 Faubourg Saint Honor&eacute; - F-75016 Paris
+		</td>
+		</tr>
+		<tr>
+		<td>
+		RICE Joe
+		</td>
+		<td>
+		18 Faubourg Saint Honor&eacute; - F-75016 Paris
+		</td>
+		</tr>
+		<tr>
+		<td>
+		RICHARDS Paul
+		</td>
+		<td>
+		40 Faubourg Saint Honor&eacute; - F-75016 Paris
+		</td>
+		</tr>
+		<tr>
+		<td>
+		RICHARDSON Lauren
+		</td>
+		<td>
+		94 rue Nationale - F-75004 Paris
+		</td>
+		</tr>
+		<tr>
+		<td>
+		SATTLER Jack
+		</td>
+		<td>
+		38 Faubourg Saint Honor&eacute; - F-75016 Paris
+		</td>
+		</tr>
+		<tr>
+		<td>
+		SMITH Kevin
+		</td>
+		<td>
+		58 Faubourg Saint Honor&eacute; - F-75016 Paris
+		</td>
+		</tr>
+		<tr>
+		<td>
+		WAYNE Leonard
+		</td>
+		<td>
+		14 Faubourg Saint Honor&eacute; - F-75016 Paris
+		</td>
+		</tr>
+		<tr>
+		<td>
+		WAYNE Williams
+		</td>
+		<td>
+		28 rue La Bo&eacute;tie - F-75016 Paris
+		</td>
+		</tr>
+		<tr>
+		<td>
+		WILLIAMS Megan
+		</td>
+		<td>
+		44 Faubourg Saint Honor&eacute; - F-75016 Paris
+		</td>
+		</tr>
+		</table>
+		<span class="lignes">46 lignes s&eacute;lectionn&eacute;es.</span><br>
+	</div>
+</div>
+<div class="basdepage">
+Cr&eacute;&eacute; à la sueur de notre front par Hugo Mesones, Sutharsan Murugesu, et Matthieu Mollar.
+</div>
+</body>
+</html>

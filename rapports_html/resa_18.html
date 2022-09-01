@@ -1,0 +1,308 @@
+<!DOCTYPE html> 
+<html lang="fr"> 
+<head>
+<title>Rapport 17 : Paiement des réservations</title>
+<link rel="stylesheet" href="css/reset.css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+<meta charset="utf-8"> 
+<link rel="stylesheet" href="style.css">
+<meta http-equiv="Content-Type" content="text/html; charset=CP850">
+<meta name="generator" content="SQL*Plus 19.3.0">
+<style type='text/css'> body {font:10pt Arial,Helvetica,sans-serif; color:black; background:#203F7D} p {font:10pt Helvetica,sans-serif; color:black; font-weight: bold;} table {font:10pt Arial,Helvetica,sans-serif; color:Black; background:#f7f7e7; padding:0px 0px 0px 0px; margin:0px 0px 10px 0px;} tr,td {font:10pt Arial,Helvetica,sans-serif; color:Black; background:#f7f7e7; padding:5px 5px 5px 5px; margin:0px 0px 0px 0px;} th {font:bold 10pt Arial,Helvetica,sans-serif; color:#336699; background:#cccc99; padding:10px 10px 10px 10px;} h1 {font:16pt Helvetica; color:#336699; font-weight: bold; background-color:#FFF5EE; margin-top:0pt; margin-bottom:0pt; padding:0px 0px 0px 0px;-
+} h2 {font:bold 10pt Arial,Helvetica,Geneva,sans-serif; color:#336699; background-color:White; margin-top:4pt; margin-bottom:0pt;}</style>
+</head>
+<body>
+<div class="logo">
+    <img src="style/olvoyages.gif">
+</div>
+<div class="menu">
+    <a href="rapport_01.html">Rapport 1</a>
+    <span class="separateur">|</span>
+    <a href="rapport_02.html">Rapport 2</a>
+    <span class="separateur">|</span>
+    <a href="rapport_03.html">Rapport 3</a>
+    <span class="separateur">|</span>
+    <a href="rapport_04.html">Rapport 4</a>
+    <span class="separateur">|</span>
+    <a href="rapport_05.html">Rapport 5</a>
+    <span class="separateur">|</span>
+    <a href="rapport_06.html">Rapport 6</a>
+    <span class="separateur">|</span>
+    <a href="rapport_07.html">Rapport 7</a>
+    <span class="separateur">|</span>
+    <a href="rapport_08.html">Rapport 8</a>
+    <span class="separateur">|</span>
+    <a href="rapport_09.html">Rapport 9</a>
+    <span class="separateur">|</span>
+    <a href="rapport_10.html">Rapport 10</a>
+    <span class="separateur">|</span>
+    <a href="rapport_11.html">Rapport 11</a>
+    <span class="separateur">|</span>
+    <a href="rapport_12.html">Rapport 12</a>
+    <span class="separateur">|</span>
+    <a href="rapport_13.html">Rapport 13</a>
+    <span class="separateur">|</span>
+    <a href="rapport_14.html">Rapport 14</a>
+    <span class="separateur">|</span>
+    <a href="rapport_15.html">Rapport 15</a>
+    <span class="separateur">|</span>
+    <a href="rapport_16.html">Rapport 16</a>
+    <br>
+<div class="menuresa">
+    <a href="resa_13.html">R&eacute;servation 13</a>
+    <span class="separateur">|</span>
+    <span class="pageactuelle">R&eacute;servation 18</span> 
+    <span class="separateur">|</span>
+    <a href="resa_23.html">R&eacute;servation 23</a>
+    <span class="separateur">|</span>
+    <a href="resa_31.html">R&eacute;servation 31</a>
+</div>
+</div>
+<div class="conteneurresa">
+<h1>Requ&ecirc;te n&deg;17<br>
+R&eacute;servation n&deg;18</h1>
+<br>
+<p>Paiement des r&eacute;servations</p>
+    <div class="codesql">
+        SQL> <span class="coderouge"><span class="codebleu">SELECT</span> t.reservation_id &quot;N&deg; de r&eacute;servation&quot;, r.price &quot;Prix de la r&eacute;servation&quot;, c.customer_id &quot;N&deg; client&quot;, <span class="codeorange">UPPER</span>(c.last_name) <span class="codebleu">||</span> <span class="codeorange">' '</span> <span class="codebleu">||</span> c.first_name &quot;Client&quot;, t.ticket_id &quot;N&deg; ticket&quot;, <span class="codeorange">ROUND</span>((tr.price) <span class="codebleu">+</span> ((tr.price<span class="codebleu">*</span><span class="codeorange">NVL</span>(w.class_pct, 0))<span class="codebleu">/</span>100) <span class="codebleu">-</span>  (((tr.price<span class="codebleu">+</span>((tr.price<span class="codebleu">*</span><span class="codeorange">NVL</span>(w.class_pct, 0))<span class="codebleu">/</span>100))<span class="codebleu">*</span><span class="codeorange">NVL</span>(<span class="codebleu">CASE</span>
+        <br>
+          2                                      <span class="codebleu">WHEN</span> <span class="codeorange">TO_CHAR</span>(tr.departure_time, <span class="codeorange">'</span>D<span class="codeorange">'</span>) <span class="codebleu">BETWEEN</span> 1 <span class="codebleu">AND</span> 5 <span class="codebleu">THEN</span> discount_pct
+        <br>
+          3                                      <span class="codebleu">ELSE</span> discount_we_pct
+        <br>
+          4                                      <span class="codebleu">END</span>, 0))<span class="codebleu">/</span>100), 2) &quot;Prix ticket&quot;, p.pass_name &quot;Abonnement&quot;, r.buy_method &quot;Moyen de paiement&quot;, d.city <span class="codebleu">||</span> <span class="codeorange">'</span> <span class="codebleu">-</span> <span class="codeorange">'</span> <span class="codebleu">||</span> a.city &quot;Trajet&quot;, w.class_type &quot;Classe&quot;, <span class="codeorange">TO_CHAR</span>(tr.departure_time, <span class="codeorange">'</span>Day<span class="codeorange">'</span>) &quot;Jour&quot;
+        <br>
+          5  <span class="codebleu">FROM</span> t_reservation r
+        <br>
+          6  <span class="codebleu">JOIN</span> t_ticket t
+        <br>
+          7  <span class="codebleu">ON</span> r.reservation_id <span class="codebleu">=</span> t.reservation_id
+        <br>
+          8  <span class="codebleu">JOIN</span> t_customer c
+        <br>
+          9  <span class="codebleu">ON</span> t.customer_id <span class="codebleu">=</span> c.customer_id
+        <br>
+         10  <span class="codebleu">LEFT JOIN</span> t_pass p
+        <br>
+         11  <span class="codebleu">ON</span> c.pass_id <span class="codebleu">=</span> p.pass_id
+        <br>
+         12  <span class="codebleu">JOIN</span> t_wagon_train wt
+        <br>
+         13  <span class="codebleu">ON</span> t.wag_tr_id <span class="codebleu">=</span> wt.wag_tr_id
+        <br>
+         14  <span class="codebleu">JOIN</span> t_wagon w
+        <br>
+         15  <span class="codebleu">ON</span> wt.wagon_id <span class="codebleu">=</span> w.wagon_id
+        <br>
+         16  <span class="codebleu">JOIN</span> t_train tr
+        <br>
+         17  <span class="codebleu">ON</span> wt.train_id <span class="codebleu">=</span> tr.train_id
+        <br>
+         18  <span class="codebleu">JOIN</span> t_station d
+        <br>
+         19  <span class="codebleu">ON</span> tr.departure_station_id <span class="codebleu">=</span> d.station_id
+        <br>
+         20  <span class="codebleu">JOIN</span> t_station a
+        <br>
+         21  <span class="codebleu">ON</span> tr.arrival_station_id <span class="codebleu">=</span> a.station_id
+        <br>
+         22  <span class="codebleu">AND</span> r.reservation_id <span class="codebleu">=</span> <span class="codebleu">&amp;&amp;</span>num_de_reservation
+        <br>
+         23  <span class="codebleu">ORDER BY</span> r.reservation_id;</span>
+    </div>
+    <div class="reservation">
+        <br>
+        Entrez une valeur pour num_de_reservation : 18
+        <br>
+        ancien  22 : AND r.reservation_id = &amp;&amp;num_de_reservation
+        <br>
+        nouveau  22 : AND r.reservation_id = 18
+    </div>
+    <div class="tableau">
+        <br>
+        <p>
+        <table border='1' width='90%' align='center' summary='Script output'>
+        <tr>
+        <th scope="col">
+        N&deg; de r&eacute;servation
+        </th>
+        <th scope="col">
+        Prix de la r&eacute;servation
+        </th>
+        <th scope="col">
+        N&deg; client
+        </th>
+        <th scope="col">
+        Client
+        </th>
+        <th scope="col">
+        N&deg; ticket
+        </th>
+        <th scope="col">
+        Prix ticket
+        </th>
+        <th scope="col">
+        Abonnement
+        </th>
+        <th scope="col">
+        Moyen de paiement
+        </th>
+        <th scope="col">
+        Trajet
+        </th>
+        <th scope="col">
+        Classe
+        </th>
+        <th scope="col">
+        Jour
+        </th>
+        </tr>
+        <tr>
+        <td align="right">
+                18
+        </td>
+        <td align="right">
+            239,25
+        </td>
+        <td align="right">
+                43
+        </td>
+        <td>
+        HOLMES Martin
+        </td>
+        <td align="right">
+                34
+        </td>
+        <td align="right">
+                87
+        </td>
+        <td>
+        &nbsp;
+        </td>
+        <td>
+        Cash
+        </td>
+        <td>
+        Paris - Calais
+        </td>
+        <td align="right">
+                 1
+        </td>
+        <td>
+        Mardi   
+        </td>
+        </tr>
+        <tr>
+        <td align="right">
+                18
+        </td>
+        <td align="right">
+            239,25
+        </td>
+        <td align="right">
+                53
+        </td>
+        <td>
+        ROSS Lou
+        </td>
+        <td align="right">
+                36
+        </td>
+        <td align="right">
+              43,5
+        </td>
+        <td>
+        15-25
+        </td>
+        <td>
+        Cash
+        </td>
+        <td>
+        Paris - Calais
+        </td>
+        <td align="right">
+                 1
+        </td>
+        <td>
+        Mardi   
+        </td>
+        </tr>
+        <tr>
+        <td align="right">
+                18
+        </td>
+        <td align="right">
+            239,25
+        </td>
+        <td align="right">
+                53
+        </td>
+        <td>
+        ROSS Lou
+        </td>
+        <td align="right">
+                35
+        </td>
+        <td align="right">
+             36,25
+        </td>
+        <td>
+        15-25
+        </td>
+        <td>
+        Cash
+        </td>
+        <td>
+        Calais - Paris
+        </td>
+        <td align="right">
+                 2
+        </td>
+        <td>
+        Lundi   
+        </td>
+        </tr>
+        <tr>
+        <td align="right">
+                18
+        </td>
+        <td align="right">
+            239,25
+        </td>
+        <td align="right">
+                43
+        </td>
+        <td>
+        HOLMES Martin
+        </td>
+        <td align="right">
+                33
+        </td>
+        <td align="right">
+              72,5
+        </td>
+        <td>
+        &nbsp;
+        </td>
+        <td>
+        Cash
+        </td>
+        <td>
+        Calais - Paris
+        </td>
+        <td align="right">
+                 2
+        </td>
+        <td>
+        Lundi   
+        </td>
+        </tr>
+        </table>
+        <span class="lignes">4 lignes s&eacute;lectionn&eacute;es.</span><br>
+    </div>
+</div>
+<div class="basdepageresa">
+Cr&eacute;&eacute; &agrave; la sueur de notre front par Hugo Mesones, Sutharsan Murugesu, et Matthieu Mollar.
+</div>
+</body>
+</html>

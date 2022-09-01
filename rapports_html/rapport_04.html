@@ -1,0 +1,997 @@
+<!DOCTYPE html> 
+<html lang="fr"> 
+<head>
+<title>Rapport 4 : Titres d'abonnement</title>
+<link rel="stylesheet" href="css/reset.css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+<meta charset="utf-8"> 
+<link rel="stylesheet" href="style.css">
+<meta http-equiv="Content-Type" content="text/html; charset=CP850">
+<meta name="generator" content="SQL*Plus 19.3.0">
+<style type='text/css'> body {font:10pt Arial,Helvetica,sans-serif; color:black; background:#203F7D} p {font:10pt Helvetica,sans-serif; color:black; font-weight: bold;} table {font:10pt Arial,Helvetica,sans-serif; color:Black; background:#f7f7e7; padding:0px 0px 0px 0px; margin:0px 0px 10px 0px;} tr,td {font:10pt Arial,Helvetica,sans-serif; color:Black; background:#f7f7e7; padding:5px 5px 5px 5px; margin:0px 0px 0px 0px;} th {font:bold 10pt Arial,Helvetica,sans-serif; color:#336699; background:#cccc99; padding:10px 10px 10px 10px;} h1 {font:16pt Helvetica; color:#336699; font-weight: bold; background-color:#FFF5EE; margin-top:0pt; margin-bottom:0pt; padding:0px 0px 0px 0px;-
+} h2 {font:bold 10pt Arial,Helvetica,Geneva,sans-serif; color:#336699; background-color:White; margin-top:4pt; margin-bottom:0pt;}</style>
+</head>
+<body>
+<div class="logo">
+	<img src="style/olvoyages.gif">
+</div>
+<div class="menu">
+	<a href="rapport_01.html">Rapport 1</a>
+	<span class="separateur">|</span>
+	<a href="rapport_02.html">Rapport 2</a>
+	<span class="separateur">|</span>
+	<a href="rapport_03.html">Rapport 3</a>
+	<span class="separateur">|</span>
+	<span class="pageactuelle">Rapport 4</span>
+	<span class="separateur">|</span>
+	<a href="rapport_05.html">Rapport 5</a>
+	<span class="separateur">|</span>
+	<a href="rapport_06.html">Rapport 6</a>
+	<span class="separateur">|</span>
+	<a href="rapport_07.html">Rapport 7</a>
+	<span class="separateur">|</span>
+	<a href="rapport_08.html">Rapport 8</a>
+	<span class="separateur">|</span>
+	<a href="rapport_09.html">Rapport 9</a>
+	<span class="separateur">|</span>
+	<a href="rapport_10.html">Rapport 10</a>
+	<span class="separateur">|</span>
+	<a href="rapport_11.html">Rapport 11</a>
+	<span class="separateur">|</span>
+	<a href="rapport_12.html">Rapport 12</a>
+	<span class="separateur">|</span>
+	<a href="rapport_13.html">Rapport 13</a>
+	<span class="separateur">|</span>
+	<a href="rapport_14.html">Rapport 14</a>
+	<span class="separateur">|</span>
+	<a href="rapport_15.html">Rapport 15</a>
+	<span class="separateur">|</span>
+	<a href="rapport_16.html">Rapport 16</a>
+	<br>
+	<a href="resa_13.html">R&eacute;servation 13</a>
+	<span class="separateur">|</span>
+	<a href="resa_18.html">R&eacute;servation 18</a>
+	<span class="separateur">|</span>
+	<a href="resa_23.html">R&eacute;servation 23</a>
+	<span class="separateur">|</span>
+	<a href="resa_31.html">R&eacute;servation 31</a>
+</div>
+<div class="conteneur">
+<h1>Requ&ecirc;te n&deg;4</h1>
+<br>
+<p>Titres d'abonnement</p>
+	<div class="codesql">
+		SQL> <span class="coderouge"><span class="codebleu">SELECT</span> <span class="codeorange">UPPER</span>(last_name) <span class="codebleu">||</span> <span class="codeorange">' '</span> <span class="codebleu">||</span> first_name "Client", pass_date &quot;Date d'achat&quot;,
+		<br>
+		  2  <span class="codebleu">CASE</span>
+		<br>
+		  3  <span class="codebleu">WHEN</span> pass_date <span class="codebleu">&lt;=</span> <span class="codeorange">'</span>14<span class="codebleu">/</span>10<span class="codebleu">/</span>19<span class="codeorange">'</span> <span class="codebleu">THEN</span> <span class="codeorange">'</span>P&eacute;rim&eacute; !<span class="codeorange">'</span>
+		<br>
+		  4  <span class="codebleu">WHEN</span> pass_date <span class="codebleu">IS NULL THEN</span> <span class="codeorange">'</span>Aucun<span class="codeorange">'</span>
+		<br>
+		  5  <span class="codebleu">ELSE</span> p.pass_name
+		<br>
+		  6  <span class="codebleu">END</span> &quot;Titre d'abonnement&quot;
+		<br>
+		  7  <span class="codebleu">FROM</span> t_customer c
+		<br>
+		  8  <span class="codebleu">LEFT JOIN</span> t_pass p
+		<br>
+		  9  <span class="codebleu">ON</span> c.pass_id <span class="codebleu">=</span> p.pass_id
+		<br>
+		 10  <span class="codebleu">ORDER BY</span> &quot;Client&quot;;</span>
+ 	</div>
+ 	<div class="tableau">
+		<br>
+		<table border='1' width='90%' align='center' summary='Script output'>
+		<tr>
+		<th scope="col">
+		Client
+		</th>
+		<th scope="col">
+		Date d'achat
+		</th>
+		<th scope="col">
+		Titre d'abonnement
+		</th>
+		</tr>
+		<tr>
+		<td>
+		ALBERT Thomas
+		</td>
+		<td>
+		09/04/20
+		</td>
+		<td>
+		Senior
+		</td>
+		</tr>
+		<tr>
+		<td>
+		ALEN Doug
+		</td>
+		<td>
+		25/06/19
+		</td>
+		<td>
+		P&eacute;rim&eacute; !
+		</td>
+		</tr>
+		<tr>
+		<td>
+		BARNES Bill
+		</td>
+		<td>
+		&nbsp;
+		</td>
+		<td>
+		Aucun
+		</td>
+		</tr>
+		<tr>
+		<td>
+		BARNES Katherine
+		</td>
+		<td>
+		&nbsp;
+		</td>
+		<td>
+		Aucun
+		</td>
+		</tr>
+		<tr>
+		<td>
+		BARNES Luann
+		</td>
+		<td>
+		24/09/19
+		</td>
+		<td>
+		P&eacute;rim&eacute; !
+		</td>
+		</tr>
+		<tr>
+		<td>
+		BARNES Ted
+		</td>
+		<td>
+		25/02/20
+		</td>
+		<td>
+		Senior
+		</td>
+		</tr>
+		<tr>
+		<td>
+		BAUER John
+		</td>
+		<td>
+		&nbsp;
+		</td>
+		<td>
+		Aucun
+		</td>
+		</tr>
+		<tr>
+		<td>
+		BROOKE Morgan
+		</td>
+		<td>
+		04/11/19
+		</td>
+		<td>
+		15-25
+		</td>
+		</tr>
+		<tr>
+		<td>
+		BURTON Albert
+		</td>
+		<td>
+		&nbsp;
+		</td>
+		<td>
+		Aucun
+		</td>
+		</tr>
+		<tr>
+		<td>
+		BURTON Whitney
+		</td>
+		<td>
+		16/03/20
+		</td>
+		<td>
+		Pro
+		</td>
+		</tr>
+		<tr>
+		<td>
+		CLARK Paul
+		</td>
+		<td>
+		09/01/20
+		</td>
+		<td>
+		15-25
+		</td>
+		</tr>
+		<tr>
+		<td>
+		COLLINS Ben
+		</td>
+		<td>
+		17/03/20
+		</td>
+		<td>
+		Pro
+		</td>
+		</tr>
+		<tr>
+		<td>
+		COOPER Clarck
+		</td>
+		<td>
+		04/11/19
+		</td>
+		<td>
+		Senior
+		</td>
+		</tr>
+		<tr>
+		<td>
+		CUNNINGHAM Charles
+		</td>
+		<td>
+		&nbsp;
+		</td>
+		<td>
+		Aucun
+		</td>
+		</tr>
+		<tr>
+		<td>
+		CUNNINGHAM Dennis
+		</td>
+		<td>
+		10/07/19
+		</td>
+		<td>
+		P&eacute;rim&eacute; !
+		</td>
+		</tr>
+		<tr>
+		<td>
+		DALTON Vance
+		</td>
+		<td>
+		&nbsp;
+		</td>
+		<td>
+		Aucun
+		</td>
+		</tr>
+		<tr>
+		<td>
+		DAWN Lane
+		</td>
+		<td>
+		&nbsp;
+		</td>
+		<td>
+		Aucun
+		</td>
+		</tr>
+		<tr>
+		<td>
+		ERICKSON Harvey
+		</td>
+		<td>
+		02/08/19
+		</td>
+		<td>
+		P&eacute;rim&eacute; !
+		</td>
+		</tr>
+		<tr>
+		<td>
+		ERICKSON Leonard
+		</td>
+		<td>
+		&nbsp;
+		</td>
+		<td>
+		Aucun
+		</td>
+		</tr>
+		<tr>
+		<td>
+		ERICKSON Lou
+		</td>
+		<td>
+		02/03/20
+		</td>
+		<td>
+		Pro
+		</td>
+		</tr>
+		<tr>
+		<td>
+		FERGUSON Angie
+		</td>
+		<td>
+		&nbsp;
+		</td>
+		<td>
+		Aucun
+		</td>
+		</tr>
+		<tr>
+		<td>
+		FIELDS Romain
+		</td>
+		<td>
+		&nbsp;
+		</td>
+		<td>
+		Aucun
+		</td>
+		</tr>
+		<tr>
+		<td>
+		FLEMING Steve
+		</td>
+		<td>
+		&nbsp;
+		</td>
+		<td>
+		Aucun
+		</td>
+		</tr>
+		<tr>
+		<td>
+		FRASER Faun
+		</td>
+		<td>
+		&nbsp;
+		</td>
+		<td>
+		Aucun
+		</td>
+		</tr>
+		<tr>
+		<td>
+		FRASER Thomas
+		</td>
+		<td>
+		&nbsp;
+		</td>
+		<td>
+		Aucun
+		</td>
+		</tr>
+		<tr>
+		<td>
+		GORDON Rosemary
+		</td>
+		<td>
+		&nbsp;
+		</td>
+		<td>
+		Aucun
+		</td>
+		</tr>
+		<tr>
+		<td>
+		GORDON Roy
+		</td>
+		<td>
+		&nbsp;
+		</td>
+		<td>
+		Aucun
+		</td>
+		</tr>
+		<tr>
+		<td>
+		GRAHAM Linda
+		</td>
+		<td>
+		23/01/19
+		</td>
+		<td>
+		P&eacute;rim&eacute; !
+		</td>
+		</tr>
+		<tr>
+		<td>
+		HAMILTON Dory
+		</td>
+		<td>
+		&nbsp;
+		</td>
+		<td>
+		Aucun
+		</td>
+		</tr>
+		<tr>
+		<td>
+		HAMILTON Melvin
+		</td>
+		<td>
+		12/04/20
+		</td>
+		<td>
+		Pro
+		</td>
+		</tr>
+		<tr>
+		<td>
+		HANCOCK Marcia
+		</td>
+		<td>
+		23/05/19
+		</td>
+		<td>
+		P&eacute;rim&eacute; !
+		</td>
+		</tr>
+		<tr>
+		<td>
+		HARRIS Brandy
+		</td>
+		<td>
+		&nbsp;
+		</td>
+		<td>
+		Aucun
+		</td>
+		</tr>
+		<tr>
+		<td>
+		HARRIS Joe
+		</td>
+		<td>
+		&nbsp;
+		</td>
+		<td>
+		Aucun
+		</td>
+		</tr>
+		<tr>
+		<td>
+		HEALY Stacy
+		</td>
+		<td>
+		&nbsp;
+		</td>
+		<td>
+		Aucun
+		</td>
+		</tr>
+		<tr>
+		<td>
+		HENDRIX Charles
+		</td>
+		<td>
+		11/07/19
+		</td>
+		<td>
+		P&eacute;rim&eacute; !
+		</td>
+		</tr>
+		<tr>
+		<td>
+		HERMAN Smith
+		</td>
+		<td>
+		&nbsp;
+		</td>
+		<td>
+		Aucun
+		</td>
+		</tr>
+		<tr>
+		<td>
+		HERMAN Tom
+		</td>
+		<td>
+		&nbsp;
+		</td>
+		<td>
+		Aucun
+		</td>
+		</tr>
+		<tr>
+		<td>
+		HESS Katherine
+		</td>
+		<td>
+		&nbsp;
+		</td>
+		<td>
+		Aucun
+		</td>
+		</tr>
+		<tr>
+		<td>
+		HOLMES Martin
+		</td>
+		<td>
+		&nbsp;
+		</td>
+		<td>
+		Aucun
+		</td>
+		</tr>
+		<tr>
+		<td>
+		JACOBS Tarryn
+		</td>
+		<td>
+		15/08/19
+		</td>
+		<td>
+		P&eacute;rim&eacute; !
+		</td>
+		</tr>
+		<tr>
+		<td>
+		LANDERS Philip
+		</td>
+		<td>
+		03/06/19
+		</td>
+		<td>
+		P&eacute;rim&eacute; !
+		</td>
+		</tr>
+		<tr>
+		<td>
+		LANDERS Robert
+		</td>
+		<td>
+		&nbsp;
+		</td>
+		<td>
+		Aucun
+		</td>
+		</tr>
+		<tr>
+		<td>
+		LANG Wayne
+		</td>
+		<td>
+		02/07/19
+		</td>
+		<td>
+		P&eacute;rim&eacute; !
+		</td>
+		</tr>
+		<tr>
+		<td>
+		LARSON Arthur
+		</td>
+		<td>
+		&nbsp;
+		</td>
+		<td>
+		Aucun
+		</td>
+		</tr>
+		<tr>
+		<td>
+		LYONS Gordons
+		</td>
+		<td>
+		01/01/19
+		</td>
+		<td>
+		P&eacute;rim&eacute; !
+		</td>
+		</tr>
+		<tr>
+		<td>
+		MAUGARD Gregory
+		</td>
+		<td>
+		&nbsp;
+		</td>
+		<td>
+		Aucun
+		</td>
+		</tr>
+		<tr>
+		<td>
+		MCDANIELS Stacy
+		</td>
+		<td>
+		&nbsp;
+		</td>
+		<td>
+		Aucun
+		</td>
+		</tr>
+		<tr>
+		<td>
+		MCDANIELS Wayne
+		</td>
+		<td>
+		&nbsp;
+		</td>
+		<td>
+		Aucun
+		</td>
+		</tr>
+		<tr>
+		<td>
+		MICHAELS Timothy
+		</td>
+		<td>
+		14/02/19
+		</td>
+		<td>
+		P&eacute;rim&eacute; !
+		</td>
+		</tr>
+		<tr>
+		<td>
+		MILER Victor
+		</td>
+		<td>
+		&nbsp;
+		</td>
+		<td>
+		Aucun
+		</td>
+		</tr>
+		<tr>
+		<td>
+		MILLER Alex
+		</td>
+		<td>
+		&nbsp;
+		</td>
+		<td>
+		Aucun
+		</td>
+		</tr>
+		<tr>
+		<td>
+		MORRIS Tim
+		</td>
+		<td>
+		&nbsp;
+		</td>
+		<td>
+		Aucun
+		</td>
+		</tr>
+		<tr>
+		<td>
+		NIELSEN Melvin
+		</td>
+		<td>
+		18/08/19
+		</td>
+		<td>
+		P&eacute;rim&eacute; !
+		</td>
+		</tr>
+		<tr>
+		<td>
+		NIELSEN Raph
+		</td>
+		<td>
+		23/03/20
+		</td>
+		<td>
+		15-25
+		</td>
+		</tr>
+		<tr>
+		<td>
+		NOVAK Craig
+		</td>
+		<td>
+		&nbsp;
+		</td>
+		<td>
+		Aucun
+		</td>
+		</tr>
+		<tr>
+		<td>
+		NOVAK Jessie
+		</td>
+		<td>
+		&nbsp;
+		</td>
+		<td>
+		Aucun
+		</td>
+		</tr>
+		<tr>
+		<td>
+		OSWALD Georges
+		</td>
+		<td>
+		&nbsp;
+		</td>
+		<td>
+		Aucun
+		</td>
+		</tr>
+		<tr>
+		<td>
+		OSWALD Ty
+		</td>
+		<td>
+		&nbsp;
+		</td>
+		<td>
+		Aucun
+		</td>
+		</tr>
+		<tr>
+		<td>
+		PARKER Steve
+		</td>
+		<td>
+		13/09/19
+		</td>
+		<td>
+		P&eacute;rim&eacute; !
+		</td>
+		</tr>
+		<tr>
+		<td>
+		PATTERSON Philip
+		</td>
+		<td>
+		&nbsp;
+		</td>
+		<td>
+		Aucun
+		</td>
+		</tr>
+		<tr>
+		<td>
+		PETERSEN David
+		</td>
+		<td>
+		&nbsp;
+		</td>
+		<td>
+		Aucun
+		</td>
+		</tr>
+		<tr>
+		<td>
+		PETERSEN Melody
+		</td>
+		<td>
+		08/07/19
+		</td>
+		<td>
+		P&eacute;rim&eacute; !
+		</td>
+		</tr>
+		<tr>
+		<td>
+		PHILIPS Rich
+		</td>
+		<td>
+		15/03/20
+		</td>
+		<td>
+		Senior
+		</td>
+		</tr>
+		<tr>
+		<td>
+		POWEL Tom
+		</td>
+		<td>
+		07/04/19
+		</td>
+		<td>
+		P&eacute;rim&eacute; !
+		</td>
+		</tr>
+		<tr>
+		<td>
+		QUINN Rosemary
+		</td>
+		<td>
+		21/05/19
+		</td>
+		<td>
+		P&eacute;rim&eacute; !
+		</td>
+		</tr>
+		<tr>
+		<td>
+		REYNOLDS Philip
+		</td>
+		<td>
+		&nbsp;
+		</td>
+		<td>
+		Aucun
+		</td>
+		</tr>
+		<tr>
+		<td>
+		REYNOLDS Samantha
+		</td>
+		<td>
+		14/06/19
+		</td>
+		<td>
+		P&eacute;rim&eacute; !
+		</td>
+		</tr>
+		<tr>
+		<td>
+		RICE Joe
+		</td>
+		<td>
+		&nbsp;
+		</td>
+		<td>
+		Aucun
+		</td>
+		</tr>
+		<tr>
+		<td>
+		RICHARDS Paul
+		</td>
+		<td>
+		&nbsp;
+		</td>
+		<td>
+		Aucun
+		</td>
+		</tr>
+		<tr>
+		<td>
+		RICHARDSON Lauren
+		</td>
+		<td>
+		&nbsp;
+		</td>
+		<td>
+		Aucun
+		</td>
+		</tr>
+		<tr>
+		<td>
+		ROSS Lou
+		</td>
+		<td>
+		04/11/19
+		</td>
+		<td>
+		15-25
+		</td>
+		</tr>
+		<tr>
+		<td>
+		SANDERS Laurie
+		</td>
+		<td>
+		15/02/20
+		</td>
+		<td>
+		15-25
+		</td>
+		</tr>
+		<tr>
+		<td>
+		SATTLER Jack
+		</td>
+		<td>
+		&nbsp;
+		</td>
+		<td>
+		Aucun
+		</td>
+		</tr>
+		<tr>
+		<td>
+		SMITH Kevin
+		</td>
+		<td>
+		&nbsp;
+		</td>
+		<td>
+		Aucun
+		</td>
+		</tr>
+		<tr>
+		<td>
+		STEINBACH Barbra
+		</td>
+		<td>
+		21/09/19
+		</td>
+		<td>
+		P&eacute;rim&eacute; !
+		</td>
+		</tr>
+		<tr>
+		<td>
+		TUCKER Gerard
+		</td>
+		<td>
+		02/05/20
+		</td>
+		<td>
+		15-25
+		</td>
+		</tr>
+		<tr>
+		<td>
+		WARREN Paul
+		</td>
+		<td>
+		11/03/20
+		</td>
+		<td>
+		Senior
+		</td>
+		</tr>
+		<tr>
+		<td>
+		WAYNE Leonard
+		</td>
+		<td>
+		&nbsp;
+		</td>
+		<td>
+		Aucun
+		</td>
+		</tr>
+		<tr>
+		<td>
+		WAYNE Williams
+		</td>
+		<td>
+		&nbsp;
+		</td>
+		<td>
+		Aucun
+		</td>
+		</tr>
+		<tr>
+		<td>
+		WHITE Elliott
+		</td>
+		<td>
+		12/03/20
+		</td>
+		<td>
+		Pro
+		</td>
+		</tr>
+		<tr>
+		<td>
+		WILLIAMS Megan
+		</td>
+		<td>
+		&nbsp;
+		</td>
+		<td>
+		Aucun
+		</td>
+		</tr>
+		</table>
+		<span class="lignes">81 lignes s&eacute;lectionn&eacute;es.</span><br>
+	</div>
+</div>
+<div class="basdepage">
+Créé à la sueur de notre front par Hugo Mesones, Sutharsan Murugesu, et Matthieu Mollar.
+</div>
+</body>
+</html>

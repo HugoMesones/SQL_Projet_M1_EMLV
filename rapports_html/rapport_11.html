@@ -1,0 +1,361 @@
+<!DOCTYPE html> 
+<html lang="fr"> 
+<head>
+<title>Rapport 11 : Trains de Paris</title>
+<link rel="stylesheet" href="css/reset.css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+<meta charset="utf-8"> 
+<link rel="stylesheet" href="style.css">
+<meta http-equiv="Content-Type" content="text/html; charset=CP850">
+<meta name="generator" content="SQL*Plus 19.3.0">
+<style type='text/css'> body {font:10pt Arial,Helvetica,sans-serif; color:black; background:#203F7D} p {font:10pt Helvetica,sans-serif; color:black; font-weight: bold;} table {font:10pt Arial,Helvetica,sans-serif; color:Black; background:#f7f7e7; padding:0px 0px 0px 0px; margin:0px 0px 10px 0px;} tr,td {font:10pt Arial,Helvetica,sans-serif; color:Black; background:#f7f7e7; padding:5px 5px 5px 5px; margin:0px 0px 0px 0px;} th {font:bold 10pt Arial,Helvetica,sans-serif; color:#336699; background:#cccc99; padding:10px 10px 10px 10px;} h1 {font:16pt Helvetica; color:#336699; font-weight: bold; background-color:#FFF5EE; margin-top:0pt; margin-bottom:0pt; padding:0px 0px 0px 0px;-
+} h2 {font:bold 10pt Arial,Helvetica,Geneva,sans-serif; color:#336699; background-color:White; margin-top:4pt; margin-bottom:0pt;}</style>
+</head>
+<body>
+<div class="logo">
+    <img src="style/olvoyages.gif">
+</div>
+<div class="menu">
+    <a href="rapport_01.html">Rapport 1</a>
+    <span class="separateur">|</span>
+    <a href="rapport_02.html">Rapport 2</a>
+    <span class="separateur">|</span>
+    <a href="rapport_03.html">Rapport 3</a>
+    <span class="separateur">|</span>
+    <a href="rapport_04.html">Rapport 4</a>
+    <span class="separateur">|</span>
+    <a href="rapport_05.html">Rapport 5</a>
+    <span class="separateur">|</span>
+    <a href="rapport_06.html">Rapport 6</a>
+    <span class="separateur">|</span>
+    <a href="rapport_07.html">Rapport 7</a>
+    <span class="separateur">|</span>
+    <a href="rapport_08.html">Rapport 8</a>
+    <span class="separateur">|</span>
+    <a href="rapport_09.html">Rapport 9</a>
+    <span class="separateur">|</span>
+    <a href="rapport_10.html">Rapport 10</a>
+    <span class="separateur">|</span>
+    <span class="pageactuelle">Rapport 11</span>
+    <span class="separateur">|</span>
+    <a href="rapport_12.html">Rapport 12</a>
+    <span class="separateur">|</span>
+    <a href="rapport_13.html">Rapport 13</a>
+    <span class="separateur">|</span>
+    <a href="rapport_14.html">Rapport 14</a>
+    <span class="separateur">|</span>
+    <a href="rapport_15.html">Rapport 15</a>
+    <span class="separateur">|</span>
+    <a href="rapport_16.html">Rapport 16</a>
+    <br>
+    <a href="resa_13.html">Réservation 13</a>
+    <span class="separateur">|</span>
+    <a href="resa_18.html">Réservation 18</a>
+    <span class="separateur">|</span>
+    <a href="resa_23.html">Réservation 23</a>
+    <span class="separateur">|</span>
+    <a href="resa_31.html">Réservation 31</a>
+</div>
+<div class="conteneur">
+<h1>Requête n°11</h1>
+<br>
+<p>Trains de Paris</p>
+    <div class="codesql">
+        SQL> <span class="coderouge"><span class="codebleu">SELECT</span> t.train_id <span class="codebleu">||</span> <span class="codeorange">' '</span> <span class="codebleu">||</span> s1.city <span class="codebleu">||</span> <span class="codeorange">'</span> <span class="codebleu">-</span> <span class="codeorange">'</span> <span class="codebleu">||</span> s2.city "Trains au départ de Paris", pass_name "Titre d'abonnement", <span class="codeorange">ROUND</span>(t.price<span class="codebleu">-</span>t.price<span class="codebleu">*</span>discount_pct<span class="codebleu">/</span>100, 2) "Tarif en semaine",
+        <br>
+          2  <span class="codeorange">ROUND</span>(t.price<span class="codebleu">-</span>t.price<span class="codebleu">*</span>discount_we_pct<span class="codebleu">/</span>100, 2) "Tarif en week-end"
+        <br>
+          3  <span class="codebleu">FROM</span> t_train t
+        <br>
+          4  <span class="codebleu">CROSS JOIN</span> t_pass p
+        <br>
+          5  <span class="codebleu">JOIN</span> t_station s1
+        <br>
+          6  <span class="codebleu">ON</span> t.departure_station_id <span class="codebleu">=</span> s1.station_id
+        <br>
+          7  <span class="codebleu">JOIN</span> t_station s2
+        <br>
+          8  <span class="codebleu">ON</span> t.arrival_station_id <span class="codebleu">=</span> s2.station_id
+        <br>
+         9  <span class="codebleu">WHERE</span> s1.city <span class="codebleu">=</span> <span class="codeorange">'</span>Paris<span class="codeorange">'</span>
+        <br>
+         10  <span class="codebleu">ORDER BY</span> train_id, pass_id;</span>
+    </div>
+    <div class="tableau">
+        <br>
+        <table border='1' width='90%' align='center' summary='Script output'>
+        <tr>
+            <th scope="col">
+            Trains au départ de Paris
+            </th>
+            <th scope="col">
+            Titre d'abonnement
+            </th>
+            <th scope="col">
+            Tarif en semaine
+            </th>
+            <th scope="col">
+            Tarif en week-end
+            </th>
+        </tr>
+        <tr>
+            <td>
+            1 Paris - Bordeaux
+            </td>
+            <td>
+            15-25
+            </td>
+            <td align="right">
+                 60,25€
+            </td>
+            <td align="right">
+                 90,38€
+            </td>
+        </tr>
+        <tr>
+            <td>
+            1 Paris - Bordeaux
+            </td>
+            <td>
+            Senior
+            </td>
+            <td align="right">
+                  72,3€
+            </td>
+            <td align="right">
+                  96,4€
+            </td>
+        </tr>
+        <tr>
+            <td>
+            1 Paris - Bordeaux
+            </td>
+            <td>
+            Pro
+            </td>
+            <td align="right">
+                 84,35€
+            </td>
+            <td align="right">
+                102,43€
+            </td>
+        </tr>
+        <tr>
+            <td>
+            3 Paris - Marseille
+            </td>
+            <td>
+            15-25
+            </td>
+            <td align="right">
+                    77€
+            </td>
+            <td align="right">
+                 115,5€
+            </td>
+        </tr>
+        <tr>
+            <td>
+            3 Paris - Marseille
+            </td>
+            <td>
+            Senior
+            </td>
+            <td align="right">
+                  92,4€
+            </td>
+            <td align="right">
+                 123,2€
+            </td>
+        </tr>
+        <tr>
+            <td>
+            3 Paris - Marseille
+            </td>
+            <td>
+            Pro
+            </td>
+            <td align="right">
+                 107,8€
+            </td>
+            <td align="right">
+                 130,9€
+            </td>
+        </tr>
+        <tr>
+            <td>
+            12 Paris - Nice
+            </td>
+            <td>
+            15-25
+            </td>
+            <td align="right">
+                 84,38€
+            </td>
+            <td align="right">
+                126,56€
+            </td>
+        </tr>
+        <tr>
+            <td>
+            12 Paris - Nice
+            </td>
+            <td>
+            Senior
+            </td>
+            <td align="right">
+                101,25€
+            </td>
+            <td align="right">
+                   135€
+            </td>
+        </tr>
+        <tr>
+            <td>
+            12 Paris - Nice
+            </td>
+            <td>
+            Pro
+            </td>
+            <td align="right">
+                118,13€
+            </td>
+            <td align="right">
+                143,44€
+            </td>
+        </tr>
+        <tr>
+            <td>
+            26 Paris - Saint-Malo
+            </td>
+            <td>
+            15-25
+            </td>
+            <td align="right">
+                 43,75€
+            </td>
+            <td align="right">
+                 65,63€
+            </td>
+        </tr>
+        <tr>
+            <td>
+            26 Paris - Saint-Malo
+            </td>
+            <td>
+            Senior
+            </td>
+            <td align="right">
+                  52,5€
+            </td>
+            <td align="right">
+                    70€
+            </td>
+        </tr>
+        <tr>
+            <td>
+            26 Paris - Saint-Malo
+            </td>
+            <td>
+            Pro
+            </td>
+            <td align="right">
+                 61,25€
+            </td>
+            <td align="right">
+                 74,38€
+            </td>
+        </tr>
+        <tr>
+            <td>
+            36 Paris - Calais
+            </td>
+            <td>
+            15-25
+            </td>
+            <td align="right">
+                 36,25€
+            </td>
+            <td align="right">
+                 54,38€
+            </td>
+        </tr>
+        <tr>
+            <td>
+            36 Paris - Calais
+            </td>
+            <td>
+            Senior
+            </td>
+            <td align="right">
+                  43,5€
+            </td>
+            <td align="right">
+                    58€
+            </td>
+        </tr>
+        <tr>
+            <td>
+            36 Paris - Calais
+            </td>
+            <td>
+            Pro
+            </td>
+            <td align="right">
+                 50,75€
+            </td>
+            <td align="right">
+                 61,63€
+            </td>
+        </tr>
+        <tr>
+            <td>
+            42 Paris - Le Havre
+            </td>
+            <td>
+            15-25
+            </td>
+            <td align="right">
+                 20,63€
+            </td>
+            <td align="right">
+                 30,94€
+            </td>
+        </tr>
+        <tr>
+            <td>
+            42 Paris - Le Havre
+            </td>
+            <td>
+            Senior
+            </td>
+            <td align="right">
+                 24,75€
+            </td>
+            <td align="right">
+                    33€
+            </td>
+        </tr>
+        <tr>
+            <td>
+            42 Paris - Le Havre
+            </td>
+            <td>
+            Pro
+            </td>
+            <td align="right">
+                 28,88€
+            </td>
+            <td align="right">
+                 35,06€
+            </td>
+        </tr>
+        </table>
+        <span class="lignes">18 lignes sélectionnées.<br></span>
+    </div>
+</div>
+<div class="basdepage">
+Cr&eacute;&eacute; à la sueur de notre front par Hugo Mesones, Sutharsan Murugesu, et Matthieu Mollar.
+</div>
+</body>
+</html>
