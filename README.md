@@ -1,5 +1,5 @@
 # SQL_Projet_M1_EMLV
-Note obtenue : 16/20
+Note obtenue : 17,25/20
 
 ### PRESENTATION
 
